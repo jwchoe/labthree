@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -19,7 +20,26 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                EditText x = (EditText) findViewById(R.id.editText);
+                EditText y = (EditText) findViewById(R.id.editText2);
+                TextView s = (TextView) findViewById(R.id.textView2);
 
+                String a = (x.getText().toString());
+                int number1 = Integer.parseInt(a);
+                String b = (y.getText().toString());
+                int number2 = Integer.parseInt(b);
+
+                int sum = MainActivity.add(number1, number2);
+
+                s.setText(String.valueOf(sum));
+
+
+            }
+
+        });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,21 +77,5 @@ public class MainActivity extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
     }
 
-    public void clickAdd(View view) {
-        EditText x = (EditText)findViewById(R.id.editText);
-        EditText y = (EditText)findViewById(R.id.editText2);
-        EditText s = (EditText)findViewById(R.id.editText3);
-        if (x != null && y != null) {
-            String a = (x.getText().toString());
-            int number1 = Integer.parseInt(a);
-            String b = (y.getText().toString());
-            int number2 = Integer.parseInt(b);
 
-            int sum = MainActivity.add(number1, number2);
-            if (s != null) {
-                s.setText(sum);
-            }
-
-        }
-    }
 }
